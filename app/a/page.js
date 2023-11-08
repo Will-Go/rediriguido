@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation'
 import { useEffect } from 'react';
-function test() {
+function Test() {
     
     useEffect(()=>{
         redirect('https://www.example.com')
@@ -10,11 +10,11 @@ function test() {
 
   return (
     <div >
-        test
+        Test
         
     </div>
    
   )
 }
 
-export default test
+export default Test
