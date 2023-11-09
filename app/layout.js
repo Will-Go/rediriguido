@@ -5,8 +5,8 @@ import Head from 'next/head'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Pagina',
-  description: 'de pruebas',
+  title: 'SPD_S09_01_LAB07_Hacking_Webservers',
+  description: 'Laboratorio',
 }
 
 export default function RootLayout({ children }) {
