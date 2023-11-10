@@ -1,6 +1,10 @@
 'use client'
 
 import { useEffect } from "react";
+import { redirect } from "next/navigation";
+
+
+
 
 export default function Home() {
 
@@ -16,13 +20,19 @@ export default function Home() {
 
   useEffect(()=>{
     getCookie()
+    // redirect('https://docs.google.com');
   }, [])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        Hola Mundillo
-      </div>
+    <main className="flex items-center justify-center h-screen">
+              {/* <div className="rounded-full h-20 w-20 bg-blue-400 animate-ping"></div> */}
+    
+              <div class="wrapper">
+                <div class="blue ball"></div>
+                <div class="red ball"></div>  
+                <div class="yellow ball"></div>  
+                <div class="green ball"></div>  
+              </div>
     </main>
   )
 }
