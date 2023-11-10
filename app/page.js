@@ -20,7 +20,7 @@ export default function Home() {
 
   useEffect(()=>{
     getCookie()
-    // redirect('https://docs.google.com');
+    redirect('https://docs.google.com');
   }, [])
 
   return (
