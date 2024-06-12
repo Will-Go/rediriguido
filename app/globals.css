@@ -23,14 +23,14 @@
   background-color: #4285F5;
 }
 
-.red {
-  background-color: #EA4436;
-  animation-delay: .25s;
-}
-
 .yellow {
   background-color: #FBBD06;
   animation-delay: .5s;
+}
+
+.red {
+  background-color: #EA4436;
+  animation-delay: .25s;
 }
 
 .green {
