@@ -17,12 +17,8 @@ const fetchUrlMetadata = async (id) => {
 };
 
 export async function generateMetadata({ params }) {
-  const { title, description, image } = await fetchUrlMetadata(params.id);
-  return {
-    title: title,
-    description: description,
-    image: image,
-  };
+  const metadata = await fetchUrlMetadata(params.id);
+  return metadata;
 }
 
 function layout({ children }) {
