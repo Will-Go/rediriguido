@@ -10,6 +10,9 @@ Tiene el proposito de capturar los datos del navegador de la victima como:
   - appVersion
   - platform (OS)
 
-
+Features:
+  - Muestra metadatos del documento de google docs
+  - Redireccion de docs.google.com al ingresar al index
+  - Dominio similar al de google docs
 
 
